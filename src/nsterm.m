@@ -7781,6 +7781,9 @@ not_in_argv (NSString *arg)
     [win setCollectionBehavior:NSWindowCollectionBehaviorFullScreenPrimary];
 #endif
 
+  win.titlebarAppearsTransparent = true;
+  win.appearance = [NSAppearance appearanceNamed:NSAppearanceNameVibrantDark];
+
   wr = [win frame];
   bwidth = f->border_width = wr.size.width - r.size.width;
   tibar_height = FRAME_NS_TITLEBAR_HEIGHT (f) = wr.size.height - r.size.height;
