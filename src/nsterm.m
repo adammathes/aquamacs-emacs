@@ -7781,8 +7781,18 @@ not_in_argv (NSString *arg)
     [win setCollectionBehavior:NSWindowCollectionBehaviorFullScreenPrimary];
 #endif
 
-  win.titlebarAppearsTransparent = true;
-  win.appearance = [NSAppearance appearanceNamed:NSAppearanceNameVibrantDark];
+
+  NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+  NSString *transparentTitleBar = [userDefaults stringForKey: @"TransparentTitleBar"];
+
+  if ([transparentTitleBar isEqualToString: @"DARK"]) {
+    win.titlebarAppearsTransparent = true;
+    win.appearance = [NSAppearance appearanceNamed: NSAppearanceNameVibrantDark];
+  }
+
+  if ([transparentTitleBar isEqualToString: @"LIGHT"]) {
+    win.titlebarAppearsTransparent = true;
+  }
 
   wr = [win frame];
   bwidth = f->border_width = wr.size.width - r.size.width;
